@@ -1,15 +1,10 @@
 class Transition:
-
     def __init__(self):
-        # self.current_state = current_state
-        # self.current_symbol = current_symbol
-        # self.next_state = next_state
-        # self.symbol_to_write = symbol_to_write
-        # self.direction = direction
-        # self.transitions[(current_state, current_symbol)] = self
         self.transitions = {}
 
     def add_transition(self, current_state, symbol, next_state, write_symbol, direction):
+        if direction not in ['L', 'R']:
+            raise ValueError(f"Direction '{direction}' must be either 'L' or 'R'")
         self.transitions[(current_state, symbol)] = (next_state, write_symbol, direction)
 
     def get_transition(self, current_state, symbol):
