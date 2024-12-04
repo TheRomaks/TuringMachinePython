@@ -33,11 +33,7 @@ class TuringMachine:
             raise ValueError("Input string contains symbols not in the alphabet")
         while self.current_state not in self.final_states:
             try:
-                current_symbol = self.tape.read()
                 self.step()
-                if current_symbol == self.target_symbol:
-                    self.current_state = 'q_accept'
-                    break
             except Exception as e:
                 print(str(e))
                 break
@@ -47,6 +43,6 @@ class TuringMachine:
             print("Result: Element not found.")
         else:
             print("Result: Stopped without reaching a final state.")
-        return self.tape.tape
+        return self.tape.head_position
 
 

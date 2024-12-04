@@ -1,5 +1,4 @@
 
-
 class Tape:
     def __init__(self, input_string,alphabet):
         self.tape = list(input_string)

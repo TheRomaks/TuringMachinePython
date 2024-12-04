@@ -111,16 +111,16 @@ class TestTuringMachine(unittest.TestCase):
         self.target_symbol = '8'
         self.tm = TuringMachine(self.input_string, self.states, self.initial_state, self.final_states, self.alphabet.symbols, self.target_symbol)
 
-        self.tm.transitions.add_transition('q_start', '_', 'q_reject', '_', 'R')  # Если читаем пробел - отклоняем
+        self.tm.transitions.add_transition('q_start', '_', 'q_reject', '_', 'R')
         for symbol in self.alphabet.symbols:
-            self.tm.transitions.add_transition('q_start', symbol, 'q_search', symbol, 'R')  # Переход в состояние поиска
+            self.tm.transitions.add_transition('q_start', symbol, 'q_search', symbol, 'R')
 
-        self.tm.transitions.add_transition('q_search', '_', 'q_reject', '_', 'R')  # Если дошли до конца - отклоняем
+        self.tm.transitions.add_transition('q_search', '_', 'q_reject', '_', 'R')
         for symbol in self.alphabet.symbols:
             if symbol == self.target_symbol:
-                self.tm.transitions.add_transition('q_search', symbol, 'q_accept', symbol, 'R')  # Успешный переход при нахождении целевого символа
+                self.tm.transitions.add_transition('q_search', symbol, 'q_accept', symbol, 'R')
             else:
-                self.tm.transitions.add_transition('q_search', symbol, 'q_search', symbol, 'R')  # Продолжаем поиск
+                self.tm.transitions.add_transition('q_search', symbol, 'q_search', symbol, 'R')
 
     def test_init(self):
         self.assertEqual(self.tm.states, self.states)

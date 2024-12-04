@@ -9,7 +9,7 @@ states = ['q_start', 'q_search', 'q_accept', 'q_reject']
 initial_state = 'q_start'
 final_states = ['q_accept', 'q_reject']
 input_string = "011348343575876"
-target_symbol = '1'
+target_symbol = '8'
 
 tm = TuringMachine(input_string, states, initial_state, final_states, alphabet, target_symbol)
 
@@ -29,4 +29,4 @@ tm.current_state = initial_state
 
 result = tm.run()
 
-print("Лента:", result)
+print("Позиция:", result)
