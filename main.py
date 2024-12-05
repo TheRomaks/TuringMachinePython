@@ -37,14 +37,14 @@ class TuringMachineGUI:
 
         self.tm = TuringMachine(input_string, states, initial_state, final_states, alphabet_symbols, search_element)
 
-        self.tm.transitions.add_transition('q_start', '_', 'q_reject', '_', 'R')
+        self.tm.transitions.add_transition('q_start', '_', 'q_reject', '_', 'N')
         for symbol in alphabet_symbols:
             self.tm.transitions.add_transition('q_start', symbol, 'q_search', symbol, 'R')
 
-        self.tm.transitions.add_transition('q_search', '_', 'q_reject', '_', 'R')
+        self.tm.transitions.add_transition('q_search', '_', 'q_reject', '_', 'N')
         for symbol in alphabet_symbols:
             if symbol == self.tm.target_symbol:
-                self.tm.transitions.add_transition('q_search', symbol, 'q_accept', symbol, 'R')
+                self.tm.transitions.add_transition('q_search', symbol, 'q_accept', symbol, 'N')
             else:
                 self.tm.transitions.add_transition('q_search', symbol, 'q_search', symbol, 'R')
 
@@ -53,7 +53,7 @@ class TuringMachineGUI:
             self.tm.run()
             result_message = "Simulation completed.\n"
             if self.tm.current_state == 'q_accept':
-                found_position = self.tm.tape.head_position
+                found_position = self.tm.tape.head_position + 1
                 result_message += f"Element found at position {found_position}!"
             elif self.tm.current_state == 'q_reject':
                 result_message += "Element not found."

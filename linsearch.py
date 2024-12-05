@@ -14,14 +14,14 @@ target_symbol = '8'
 tm = TuringMachine(input_string, states, initial_state, final_states, alphabet, target_symbol)
 
 
-tm.transitions.add_transition('q_start', '_', 'q_reject', '_', 'R')
+tm.transitions.add_transition('q_start', '_', 'q_reject', '_', 'N')
 for symbol in alphabet:
     tm.transitions.add_transition('q_start', symbol, 'q_search', symbol, 'R')
 
-tm.transitions.add_transition('q_search', '_', 'q_reject', '_', 'R')
+tm.transitions.add_transition('q_search', '_', 'q_reject', '_', 'N')
 for symbol in alphabet:
     if symbol == tm.target_symbol:
-        tm.transitions.add_transition('q_search', symbol, 'q_accept', symbol, 'R')
+        tm.transitions.add_transition('q_search', symbol, 'q_accept', symbol, 'N')
     else:
         tm.transitions.add_transition('q_search', symbol, 'q_search', symbol, 'R')
 
